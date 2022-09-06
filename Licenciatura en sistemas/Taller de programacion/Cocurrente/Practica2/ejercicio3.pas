@@ -70,8 +70,8 @@ end;
 
 function minNum (pi: lista): integer;
 begin
-	if (pi^.sig = nil) then
-		minNum := pi^.elem
+	if (pi = nil) then
+		minNum := 20000;
 	else
 		begin
 			minNum:= minNum (pi^.sig);
@@ -85,22 +85,25 @@ begin
 
 end;
 
+function maximo (a, b: integer): integer;
+begin
+	if (a>= b) then 
+		maximo := a
+	else
+		maximo:= b;
+		
 
+end;
 
 function maxNum (pi: lista): integer;
 begin
-	if (pi^.sig = nil) then
-		maxNum := pi^.elem
+	if (pi = nil) then
+		maxNum := -9999
 	else
 		begin
-			maxNum := maxNum (pi^.sig);
-			
-			if (pi^.elem > maxNum) then
-				maxNum := pi^.elem
-				
+			maxNum := maximo (pi^.elem, maxNum (pi^.elem));
 		
 		end;
-
 
 end;
 
