@@ -156,16 +156,71 @@ begin
 
 
 end;
+
+
+
+function vendidasCodigo(AV : arbolVentas; codigo: integer) : integer;
+begin
+	if (AV = nil) then
+		vendidasCodigo := 0
+	else
+		begin
+			if (AV^.elem.codigo = codigo) then
+				vendidasCodigo := AV^.elem.cantVendidas + vendidasCodigo (AV^.hi, codigo)
+			else
+				if (codigo > AV^.elem.codigo) then
+					vendidasCodigo := vendidasCodigo (AV^.hd, codigo)
+				else
+					vendidasCodigo := vendidasCodigo (AV^.hi, codigo);
+				
+				
+				
+		
+		
+		end;
+
+
+
+end;
+
+function vendidasCodigo2(AP : arbolP; codigo: integer) : integer;
+begin
+	if (AP = nil) then
+		vendidasCodigo2 := 0
+	else
+		begin
+			if (AP^.elem.codigo = codigo) then
+				vendidasCodigo2 := AP^.elem.cant
+			else
+				if (codigo > AP^.elem.codigo) then
+					vendidasCodigo2 := vendidasCodigo2 (AP^.hd, codigo)
+				else
+					vendidasCodigo2 := vendidasCodigo2 (AP^.hi, codigo);
+				
+				
+				
+		
+		
+		end;
+
+
+
+end;
+
 var
 	AP: arbolP;
 	AV: arbolVentas;
+	cod : integer;
 	
 begin
 	AP := nil;
 	AV := nil;
 	cargarVentas (AP, AV);
 	imprimirArbolP (AP);
-
+	writeln ('Ingrese un codigo a buscar en el arreglo');
+	readln (cod);
+	writeln ('La cantidad vendidas del producto con codigo ', cod, ' es ', vendidasCodigo (AV, cod));
+	writeln ('La cantidad vendidas del producto con codigo ' ,cod, ' es', vendidasCodigo2 (AP, cod));
 
 end.
 
